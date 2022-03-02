@@ -12,5 +12,5 @@ const Home: NextPage = () => {
 export default Home
 
 const Biboba = styled.div`
-  color: aquamarine;
+  color: red;
 `
