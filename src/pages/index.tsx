@@ -1,26 +1,28 @@
 import type { NextPage } from 'next'
-import styled, { ThemeProvider } from 'styled-components'
-import { useRootStore } from '../store/rootStoreProvider'
-import { GlobalStyle } from '../styles/global';
+import styled from 'styled-components'
+import Layout from '../components/Layout';
+import Contact from '../components/sections/Contact';
+import Featured from '../components/sections/Featured';
+import Hero from '../components/sections/Hero';
+import Projects from '../components/sections/Projects';
 
 const Home: NextPage = () => {
 
-  const store = useRootStore();
-
   return (
-    <>
-      <ThemeProvider theme={store.currentTheme}>
-        <GlobalStyle />
-        <Biboba>AAAAAAAAAAA</Biboba>
-      </ThemeProvider>
-    </>
+    <Layout >
+      <StyledMainContainer className="fillHeight">
+        <Hero />
+        <Featured />
+        <Projects />
+        <Contact />
+      </StyledMainContainer>
+    </Layout>
   )
 }
 
 export default Home
 
-const Biboba = styled.div`
-  color: ${(props) => props.theme.colors.accent};
-  border: 1px solid;
-  border-color: var(--slate);
-`
+
+const StyledMainContainer = styled.main`
+  counter-reset: section;
+`;
