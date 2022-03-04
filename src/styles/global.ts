@@ -1,5 +1,6 @@
 import { createGlobalStyle, DefaultStyledComponent } from "styled-components";
 import fonts from "./fonts";
+import mixins from "./mixins";
 import variables from "./variables";
 
 interface GlobalProps extends DefaultStyledComponent {
@@ -303,7 +304,7 @@ export const GlobalStyle = createGlobalStyle`
         }
     }
     hr {
-        background-color: ${({ theme }) => theme.colors.backgroundMain};
+        background-color: ${({ theme }) => theme.colors.backgroundNormal};
         height: 1px;
         border-width: 0px;
         border-style: initial;
@@ -326,7 +327,7 @@ export const GlobalStyle = createGlobalStyle`
         &:focus,
         &:active {
         background-color: ${({ theme }) => theme.colors.accent};
-        color: ${({ theme }) => theme.colors.backgroundMain};
+        color: ${({ theme }) => theme.colors.backgroundNormal};
         top: 0;
         left: 0;
         width: auto;
