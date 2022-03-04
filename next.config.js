@@ -5,6 +5,11 @@ const nextConfig = {
     // ssr and displayName are configured by default
     styledComponents: true,
   },
+  i18n: {
+    locales: ['en', 'ru'],
+    defaultLocale: 'en',
+    // localeDetection: false,
+  }
 }
 
 module.exports = nextConfig

@@ -1,7 +1,12 @@
+import Head from 'next/head'
 import React from 'react'
 
 export default function AppHead() {
   return (
-    <div>Head</div>
+    <>
+      <Head>
+        <title>Abobus</title>
+      </Head>
+    </>
   )
 }
