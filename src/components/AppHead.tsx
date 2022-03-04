@@ -5,7 +5,7 @@ export default function AppHead() {
   return (
     <>
       <Head>
-        <title>Abobus</title>
+        <title>Dumetella</title>
       </Head>
     </>
   )
