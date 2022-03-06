@@ -2,6 +2,7 @@ import React from 'react'
 import styled, { ThemeProvider } from 'styled-components';
 import { useRootStore } from '../store/rootStoreProvider';
 import { GlobalStyle } from '../styles/global';
+import DarkTheme from '../styles/Themes/DarkTheme';
 import AppHead from './AppHead';
 import Email from './Email';
 import Footer from './Footer';
@@ -17,7 +18,7 @@ export default function Layout(props: LayoutProps): JSX.Element {
     return (
         <>
             <AppHead />
-            <ThemeProvider theme={store.currentTheme}>
+            <ThemeProvider theme={store.darkTheme ? DarkTheme : DarkTheme}>
                 <GlobalStyle />
                 <div id="root">
                     <StyledContent>
