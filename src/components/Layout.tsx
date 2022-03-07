@@ -6,6 +6,7 @@ import DarkTheme from '../styles/Themes/DarkTheme';
 import AppHead from './AppHead';
 import Email from './Email';
 import Footer from './Footer';
+import Menu from './Menu';
 import Navigation from './Navigation';
 import Social from './Social';
 
@@ -22,7 +23,7 @@ export default function Layout(props: LayoutProps): JSX.Element {
                 <GlobalStyle />
                 <div id="root">
                     <StyledContent>
-                        <Navigation />
+                        <Navigation isHome={true} />
                         <Social />
                         <Email />
                         <div id="content">
