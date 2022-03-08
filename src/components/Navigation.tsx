@@ -7,6 +7,7 @@ import useScrollDirection from '../hooks/useScrollDirection';
 import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion';
 import mixins from '../styles/mixins';
 import Link from 'next/link';
+import Menu from './Menu';
 
 interface NavigationProps {
   isHome: boolean;
@@ -63,9 +64,9 @@ const Navigation = (props: NavigationProps) => {
       Resume
     </a>
   );
-
+  type aboba = 'up' | 'down';
   return (
-    <StyledHeader scrollDirection={scrollDirection} scrolledToTop={scrolledToTop}>
+    <StyledHeader scrollDirection={scrollDirection as aboba} scrolledToTop={scrolledToTop}>
       <StyledNav>
         {prefersReducedMotion ? (
           <>
@@ -83,7 +84,7 @@ const Navigation = (props: NavigationProps) => {
               <div>{ResumeLink}</div>
             </StyledLinks>
 
-            {/* <Menu /> */}
+            <Menu />
           </>
         ) : (
           <>
@@ -124,7 +125,7 @@ const Navigation = (props: NavigationProps) => {
             <TransitionGroup component={null}>
               {isMounted && (
                 <CSSTransition classNames={fadeClass} timeout={timeout}>
-                  {/* <Menu /> */}
+                  <Menu />
                 </CSSTransition>
               )}
             </TransitionGroup>
