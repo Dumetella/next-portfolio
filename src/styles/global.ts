@@ -266,7 +266,7 @@ export const GlobalStyle = createGlobalStyle`
         }
         & > code {
         background-color: ${({ theme }) => theme.colors.backgroundLight};
-        color: var(--white);
+        color: ${({ theme }) => theme.colors.white};
         font-size: var(--fz-sm);
         border-radius: var(--border-radius);
         padding: 0.3em 0.5em;

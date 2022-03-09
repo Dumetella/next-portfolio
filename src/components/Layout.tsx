@@ -1,14 +1,13 @@
 import React from 'react'
 import styled, { ThemeProvider } from 'styled-components';
-import { useRootStore } from '../store/rootStoreProvider';
-import { GlobalStyle } from '../styles/global';
-import DarkTheme from '../styles/Themes/DarkTheme';
-import AppHead from './AppHead';
-import Email from './Email';
-import Footer from './Footer';
-import Menu from './Menu';
-import Navigation from './Navigation';
-import Social from './Social';
+import { useRootStore } from '@store/rootStoreProvider';
+import { GlobalStyle } from '@styles/global';
+import DarkTheme from '@styles/Themes/DarkTheme';
+import AppHead from '@components/AppHead';
+import Email from '@components/Email';
+import Footer from '@components/Footer';
+import Navigation from '@components/Navigation';
+import Social from '@components/Social';
 
 interface LayoutProps {
     children: React.ReactChild;

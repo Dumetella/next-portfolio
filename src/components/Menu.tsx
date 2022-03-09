@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import styled, { DefaultStyledComponent } from 'styled-components';
-import navLinks from '../../content/en/navlinks';
-import KEY_CODES from '../utils/keycodes';
-import useOnClickOutside from '../hooks/useOnClickOutside';
-import mixins from '../styles/mixins';
 import Link from 'next/link';
-import Head from 'next/head';
+import styled, { DefaultStyledComponent } from 'styled-components';
+import navLinks from '@en/navlinks';
+import KEY_CODES from '@utils/keycodes';
+import useOnClickOutside from '@hooks/useOnClickOutside';
+import mixins from '@styles/mixins';
+
 
 
 
@@ -90,12 +90,10 @@ const Menu = () => {
   const wrapperRef = useRef(null);
   useOnClickOutside(wrapperRef, () => setMenuOpen(false));
 
+  useEffect(() => { menuOpen ? document.querySelector("body")!.classList.add("blur") : document.querySelector("body")!.classList.remove("blur") });
+
   return (
     <StyledMenu>
-      <Head>
-        <body className={menuOpen ? 'blur' : ''} />
-      </Head>
-
       <div ref={wrapperRef}>
         <StyledHamburgerButton
           onClick={toggleMenu}

@@ -21,7 +21,34 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": [
-        "components/*"
+        "src/components/*"
+      ],
+      "@icons/*": [
+        "src/components/icons/*"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@pages/*": [
+        "src/pages/*"
+      ],
+      "@api/*": [
+        "src/pages/api/*"
+      ],
+      "@store/*": [
+        "src/store/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@en/*": [
+        "content/en/*"
+      ],
+      "@ru/*": [
+        "content/ru/*"
       ]
     }
   },

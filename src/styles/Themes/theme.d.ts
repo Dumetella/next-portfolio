@@ -19,7 +19,9 @@ declare module 'styled-components' {
             textLight: string,
             textBright: string,
             accent: string,
-            accent2: string
+            accent2: string,
+            shadow: string,
+            white: string
         }
         bp: {
             mobileS: `max-width: 330px`,

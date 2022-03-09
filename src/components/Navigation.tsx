@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled, { css, DefaultStyledComponent } from 'styled-components';
-import navLinks from '../../content/en/navlinks';
-import { loaderDelay } from '../utils/loaderDelay';
-import useScrollDirection from '../hooks/useScrollDirection';
-import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion';
-import mixins from '../styles/mixins';
+import navLinks from '@en/navlinks';
+import { loaderDelay } from '@utils/loaderDelay';
+import useScrollDirection from '@hooks/useScrollDirection';
+import usePrefersReducedMotion from '@hooks/usePrefersReducedMotion';
+import mixins from '@styles/mixins';
 import Link from 'next/link';
-import Menu from './Menu';
+import Menu from '@components/Menu';
 
 interface NavigationProps {
   isHome: boolean;
@@ -45,32 +45,39 @@ const Navigation = (props: NavigationProps) => {
   const fadeClass = isHome ? 'fade' : '';
   const fadeDownClass = isHome ? 'fadedown' : '';
 
-  // const Logo = (
-  //   <div className="logo" tabIndex="-1">
-  //     {isHome ? (
-  //       <Link href="/" aria-label="home">
-  //         <IconLogo />
-  //       </Link>
-  //     ) : (
-  //       <Link to="/" aria-label="home">
-  //         <IconLogo />
-  //       </Link>
-  //     )}
-  //   </div>
-  // );
+  const Logo = (): JSX.Element => (
+    <div className="logo" tabIndex={-1}>
+      {isHome ? (
+        <Link href="/" aria-label="home">
+          <a>
+            {/* <IconLogo /> */}
+            Aboba
+          </a>
+        </Link>
+      ) : (
+        <Link href="/" aria-label="home">
+          <a>
+            {/* <IconLogo /> */}
+            Aboba
+          </a>
+        </Link>
+      )}
+    </div>
+  );
 
   const ResumeLink = (
     <a className="resume-button" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
       Resume
     </a>
   );
-  type aboba = 'up' | 'down';
+
+  type scrollDirection = 'up' | 'down';
   return (
-    <StyledHeader scrollDirection={scrollDirection as aboba} scrolledToTop={scrolledToTop}>
+    <StyledHeader scrollDirection={scrollDirection as scrollDirection} scrolledToTop={scrolledToTop}>
       <StyledNav>
         {prefersReducedMotion ? (
           <>
-            <div>Aboba</div>
+            <Logo />
 
             <StyledLinks>
               <ol>
@@ -91,7 +98,7 @@ const Navigation = (props: NavigationProps) => {
             <TransitionGroup component={null}>
               {isMounted && (
                 <CSSTransition classNames={fadeClass} timeout={timeout}>
-                  <><div>Aboba</div></>
+                  <Logo />
                 </CSSTransition>
               )}
             </TransitionGroup>
@@ -171,7 +178,7 @@ const StyledHeader = styled.header<StyledHeaderProps>`
         height: var(--nav-scroll-height);
         transform: translateY(0px);
         background-color: rgba(10, 25, 47, 0.85);
-        box-shadow: 0 10px 30px -10px var(--navy-shadow);
+        box-shadow: 0 10px 30px -10px ${({ theme }) => theme.colors.shadow};;
       `};
     ${props =>
     props.scrollDirection === 'down' &&
@@ -179,7 +186,7 @@ const StyledHeader = styled.header<StyledHeaderProps>`
     css`
         height: var(--nav-scroll-height);
         transform: translateY(calc(var(--nav-scroll-height) * -1));
-        box-shadow: 0 10px 30px -10px var(--navy-shadow);
+        box-shadow: 0 10px 30px -10px ${({ theme }) => theme.colors.shadow};
       `};
   }
 `;
@@ -188,20 +195,20 @@ const StyledNav = styled.nav`
   ${mixins.flexBetween};
   position: relative;
   width: 100%;
-  color: var(--lightest-slate);
+  color: ${({ theme }) => theme.colors.textBright};
   font-family: var(--font-mono);
   counter-reset: item 0;
   z-index: 12;
   .logo {
     ${mixins.flexCenter};
     a {
-      color: var(--green);
+      color: ${({ theme }) => theme.colors.accent};
       width: 42px;
       height: 42px;
       &:hover,
       &:focus {
         svg {
-          fill: var(--green-tint);
+          fill: ${({ theme }) => theme.colors.accent2};
         }
       }
       svg {
@@ -234,7 +241,7 @@ const StyledLinks = styled.div`
         &:before {
           content: '0' counter(item) '.';
           margin-right: 5px;
-          color: var(--green);
+          color: ${({ theme }) => theme.colors.accent};
           font-size: var(--fz-xxs);
           text-align: right;
         }

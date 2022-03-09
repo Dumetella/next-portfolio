@@ -13,7 +13,9 @@ const DarkTheme: DefaultTheme = {
         textLight: '#a8b2d1',
         textBright: '#ccd6f6',
         accent: '#64ffda',
-        accent2: 'rgba(100, 255, 218, 0.1)'
+        accent2: 'rgba(100, 255, 218, 0.1)',
+        shadow: 'rgba(2, 12, 27, 0.7)',
+        white: '#e6f1ff'
     },
     // Breakpoints for responsive design
     bp: {

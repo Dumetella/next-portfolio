@@ -1,10 +1,10 @@
 import type { NextPage } from 'next'
 import styled from 'styled-components'
-import Layout from '../components/Layout';
-import Contact from '../components/sections/Contact';
-import Featured from '../components/sections/Featured';
-import Hero from '../components/sections/Hero';
-import Projects from '../components/sections/Projects';
+import Layout from '@components/Layout';
+import Contact from '@components/sections/Contact';
+import Featured from '@components/sections/Featured';
+import Hero from '@components/sections/Hero';
+import Projects from '@components/sections/Projects';
 
 const Home: NextPage = () => {
 

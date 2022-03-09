@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useContext } from "react";
-import { RootStore } from "../store/RootStore";
+import { RootStore } from "@store/RootStore";
 import { enableStaticRendering } from "mobx-react-lite";
 
 // there is no window object on the server
