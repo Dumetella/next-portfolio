@@ -6,10 +6,7 @@ import KEY_CODES from '@utils/keycodes';
 import useOnClickOutside from '@hooks/useOnClickOutside';
 import mixins from '@styles/mixins';
 
-
-
-
-const Menu = () => {
+const Menu = (): JSX.Element => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -85,7 +82,7 @@ const Menu = () => {
       document.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('resize', onResize);
     };
-  }, []);
+  });
 
   const wrapperRef = useRef(null);
   useOnClickOutside(wrapperRef, () => setMenuOpen(false));

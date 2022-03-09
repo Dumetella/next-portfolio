@@ -1,7 +1,7 @@
 import { createGlobalStyle, DefaultStyledComponent } from "styled-components";
 import fonts from "./fonts";
-import mixins from "./mixins";
 import variables from "./variables";
+import TransitionStyles from "@styles/transitionStyles";
 
 interface GlobalProps extends DefaultStyledComponent {
 
@@ -10,6 +10,7 @@ interface GlobalProps extends DefaultStyledComponent {
 export const GlobalStyle = createGlobalStyle`
     ${variables};
     ${fonts};
+    ${TransitionStyles};
 
     html {
         box-sizing: border-box;
@@ -205,8 +206,7 @@ export const GlobalStyle = createGlobalStyle`
         }
     }
     img,
-    svg,
-    .gatsby-image-wrapper {
+    svg {
         width: 100%;
         max-width: 100%;
         vertical-align: middle;

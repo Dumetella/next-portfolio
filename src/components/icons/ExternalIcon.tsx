@@ -1,6 +1,6 @@
 import React from 'react';
 
-const IconExternal = (): JSX.Element => (
+const ExternalIcon = (): JSX.Element => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     role="img"
@@ -18,4 +18,4 @@ const IconExternal = (): JSX.Element => (
   </svg>
 );
 
-export default IconExternal;
+export default ExternalIcon;

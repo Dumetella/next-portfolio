@@ -13,7 +13,7 @@ interface NavigationProps {
   isHome: boolean;
 }
 
-const Navigation = (props: NavigationProps) => {
+const Navigation = (props: NavigationProps): JSX.Element => {
   let isHome = props.isHome;
   const [isMounted, setIsMounted] = useState(!isHome);
   const scrollDirection = useScrollDirection();
@@ -39,7 +39,7 @@ const Navigation = (props: NavigationProps) => {
       clearTimeout(timeout);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  });
 
   const timeout = isHome ? loaderDelay : 0;
   const fadeClass = isHome ? 'fade' : '';
