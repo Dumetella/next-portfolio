@@ -11,15 +11,17 @@ const Menu = (): JSX.Element => {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  const buttonRef = useRef(null);
-  const navRef = useRef(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const navRef = useRef<HTMLElement>(null);
 
-  let menuFocusables: any;
-  let firstFocusableEl: any;
-  let lastFocusableEl: any;
+  let menuFocusables: HTMLElement[];
+  let firstFocusableEl: HTMLElement;
+  let lastFocusableEl: HTMLElement;
 
   const setFocusables = () => {
-    menuFocusables = [buttonRef.current, ...Array.from(navRef.current.querySelectorAll('a'))];
+    if (navRef.current && buttonRef.current) {
+      menuFocusables = [buttonRef.current, ...Array.from(navRef.current.querySelectorAll('a'))];
+    };
     firstFocusableEl = menuFocusables[0];
     lastFocusableEl = menuFocusables[menuFocusables.length - 1];
   };

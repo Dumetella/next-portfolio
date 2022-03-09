@@ -1,19 +1,20 @@
 import React from 'react'
 import styled from 'styled-components';
 import Side from './Side';
+import config from '@content/config'
 
 interface EmailProps {
-    isHome: boolean;
+  isHome: boolean;
 }
 
 export default function Email(props: EmailProps): JSX.Element {
-    return (
-        <Side isHome={props.isHome} orientation="right">
-            <StyledLinkWrapper>
-                <a href={`mailto:${'dumetella@outlook.com'}`}>{'dumetella@outlook.com'}</a>
-            </StyledLinkWrapper>
-        </Side>
-    )
+  return (
+    <Side isHome={props.isHome} orientation="right">
+      <StyledLinkWrapper>
+        <a href={`mailto:${config.email}`}>{config.email}</a>
+      </StyledLinkWrapper>
+    </Side>
+  )
 }
 
 const StyledLinkWrapper = styled.div`
