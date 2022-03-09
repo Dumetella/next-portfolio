@@ -23,8 +23,8 @@ export default function Layout(props: LayoutProps): JSX.Element {
                 <div id="root">
                     <StyledContent>
                         <Navigation isHome={false} />
-                        <Social />
-                        <Email />
+                        <Social isHome={false} />
+                        <Email isHome={false} />
                         <div id="content">
                             {props.children}
                         </div>
