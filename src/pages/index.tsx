@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import styled from 'styled-components'
 import Layout from '@components/Layout';
 import Contact from '@components/sections/Contact';
@@ -6,7 +6,11 @@ import Featured from '@components/sections/Featured';
 import Hero from '@components/sections/Hero';
 import Projects from '@components/sections/Projects';
 
-const Home: NextPage = () => {
+interface HomeProps {
+
+}
+
+const Home = () => {
 
   return (
     <Layout>
@@ -22,6 +26,11 @@ const Home: NextPage = () => {
 
 export default Home
 
+export async function getStaticProps() {
+  return {
+    props: {},
+  }
+}
 
 const StyledMainContainer = styled.main`
   counter-reset: section;

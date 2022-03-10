@@ -88,7 +88,7 @@ const Navigation = (props: NavigationProps): JSX.Element => {
                     </li>
                   ))}
               </ol>
-              <div>{ResumeLink}</div>
+              {/* <div>{ResumeLink}</div> */}
             </StyledLinks>
 
             <Menu />
@@ -118,7 +118,7 @@ const Navigation = (props: NavigationProps): JSX.Element => {
                 </TransitionGroup>
               </ol>
 
-              <TransitionGroup component={null}>
+              {/* <TransitionGroup component={null}>
                 {isMounted && (
                   <CSSTransition classNames={fadeDownClass} timeout={timeout}>
                     <div style={{ transitionDelay: `${isHome ? navLinks.length * 100 : 0}ms` }}>
@@ -126,7 +126,7 @@ const Navigation = (props: NavigationProps): JSX.Element => {
                     </div>
                   </CSSTransition>
                 )}
-              </TransitionGroup>
+              </TransitionGroup> */}
             </StyledLinks>
 
             <TransitionGroup component={null}>

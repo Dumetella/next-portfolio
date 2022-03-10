@@ -8,7 +8,6 @@ import styled from 'styled-components';
 export default function Hero(): JSX.Element {
     const [isMounted, setIsMounted] = useState(false);
     const prefersReducedMotion = usePrefersReducedMotion();
-
     useEffect(() => {
         if (prefersReducedMotion) {
             return;
@@ -18,14 +17,13 @@ export default function Hero(): JSX.Element {
         return () => clearTimeout(timeout);
     });
 
-    const one = <h1>Hi, my name is</h1>;
-    const two = <h2 className="big-heading">Dumetella</h2>;
-    const three = <h3 className="big-heading">I build things for the web.</h3>;
+    const one = <h1>{'lorem'}</h1>;
+    const two = <h2 className="big-heading">{'ipsum'}</h2>;
+    const three = <h3 className="big-heading">{'abobus'}</h3>;
     const four = (
         <>
             <p>
-                I’m a software engineer specializing in building (and occasionally designing) exceptional
-                digital experiences.
+                {'Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus vel veniam dolorum, quae maxime ducimus earum alias sunt blanditiis veritatis, quo dolor mollitia doloribus iste? Quo similique nisi nam perferendis!'}
             </p>
         </>
     );
