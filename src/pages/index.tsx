@@ -1,16 +1,19 @@
-import type { GetStaticProps, NextPage } from 'next'
 import styled from 'styled-components'
 import Layout from '@components/Layout';
 import Contact from '@components/sections/Contact';
 import Featured from '@components/sections/Featured';
 import Hero from '@components/sections/Hero';
 import Projects from '@components/sections/Projects';
+import { GetStaticProps, GetStaticPropsResult } from 'next';
 
 interface HomeProps {
-
+  Hero: any,
+  Featured: any,
+  Projects: any,
+  Contact: any,
 }
 
-const Home = () => {
+const Home = (props: HomeProps): JSX.Element => {
 
   return (
     <Layout>
@@ -26,11 +29,12 @@ const Home = () => {
 
 export default Home
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   return {
-    props: {},
+    props: {}, // will be passed to the page component as props
   }
 }
+
 
 const StyledMainContainer = styled.main`
   counter-reset: section;
