@@ -4,14 +4,14 @@ import Contact from '@components/sections/Contact';
 import Featured from '@components/sections/Featured';
 import Hero from '@components/sections/Hero';
 import Projects from '@components/sections/Projects';
-import { GetStaticProps, GetStaticPropsResult } from 'next';
+import { GetServerSideProps, GetServerSidePropsResult } from 'next';
 
 interface HomeProps {
-  Hero: any,
-  Featured: any,
-  Projects: any,
-  Contact: any,
-}
+  Hero?: any,
+  Featured?: any,
+  Projects?: any,
+  Contact?: any,
+};
 
 const Home = (props: HomeProps): JSX.Element => {
 
@@ -24,16 +24,16 @@ const Home = (props: HomeProps): JSX.Element => {
         <Contact />
       </StyledMainContainer>
     </Layout>
-  )
-}
+  );
+};
 
 export default Home
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async ({ locale }): Promise<GetServerSidePropsResult<HomeProps>> => {
   return {
     props: {}, // will be passed to the page component as props
-  }
-}
+  };
+};
 
 
 const StyledMainContainer = styled.main`

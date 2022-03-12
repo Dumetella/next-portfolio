@@ -238,6 +238,7 @@ const StyledSidebar = styled.aside<StyledSidebarProps>`
     transform: translateX(${props => (props.menuOpen ? 0 : 100)}vw);
     visibility: ${props => (props.menuOpen ? 'visible' : 'hidden')};
     transition: var(--transition);
+    will-change: transform;
   }
 
   nav {

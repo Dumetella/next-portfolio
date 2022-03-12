@@ -179,6 +179,7 @@ const StyledHeader = styled.header<StyledHeaderProps>`
         transform: translateY(0px);
         background-color: rgba(10, 25, 47, 0.85);
         box-shadow: 0 10px 30px -10px ${({ theme }) => theme.colors.shadow};;
+        will-change: transform;
       `};
     ${props =>
     props.scrollDirection === 'down' &&
@@ -187,6 +188,7 @@ const StyledHeader = styled.header<StyledHeaderProps>`
         height: var(--nav-scroll-height);
         transform: translateY(calc(var(--nav-scroll-height) * -1));
         box-shadow: 0 10px 30px -10px ${({ theme }) => theme.colors.shadow};
+        will-change: transform;
       `};
   }
 `;
