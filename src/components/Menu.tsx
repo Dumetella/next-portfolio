@@ -112,7 +112,7 @@ const Menu = (props: MenuProps): JSX.Element => {
           <nav ref={navRef}>
             {navLinks && (
               <ol>
-                {navLinks.map(({ url, name }, i) => (
+                {navLinks.map(({ url, name }: any, i: number) => (
                   <li key={i}>
                     <Link href={url}>
                       <a onClick={() => setMenuOpen(false)}>

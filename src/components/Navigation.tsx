@@ -83,7 +83,7 @@ const Navigation = (props: NavigationProps): JSX.Element => {
             <StyledLinks>
               <ol>
                 {navLinks &&
-                  navLinks.map(({ url, name }, i) => (
+                  navLinks.map(({ url, name }: any, i: number) => (
                     <li key={i}>
                       <Link href={url}>{name}</Link>
                     </li>
@@ -109,7 +109,7 @@ const Navigation = (props: NavigationProps): JSX.Element => {
                 <TransitionGroup component={null}>
                   {isMounted &&
                     navLinks &&
-                    navLinks.map(({ url, name }, i) => (
+                    navLinks.map(({ url, name }: any, i: number) => (
                       <CSSTransition key={i} classNames={fadeDownClass} timeout={timeout}>
                         <li key={i} style={{ transitionDelay: `${isHome ? i * 100 : 0}ms` }}>
                           <Link href={url}>{name}</Link>
