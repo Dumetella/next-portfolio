@@ -1,0 +1,20 @@
+{
+    "navLinks": [
+        {
+            "name": "Чинчопа",
+            "url": "/#about"
+        },
+        {
+            "name": "Прикольчики",
+            "url": "/#jobs"
+        },
+        {
+            "name": "Проектусы",
+            "url": "/#projects"
+        },
+        {
+            "name": "Здарова",
+            "url": "/#contact"
+        }
+    ]
+}

@@ -1,12 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import styled, { DefaultStyledComponent } from 'styled-components';
-import navLinks from '@en/navlinks';
 import KEY_CODES from '@utils/keycodes';
 import useOnClickOutside from '@hooks/useOnClickOutside';
 import mixins from '@styles/mixins';
 
-const Menu = (): JSX.Element => {
+interface MenuProps {
+  navLinks: any,
+}
+
+const Menu = (props: MenuProps): JSX.Element => {
+  const navLinks = props.navLinks;
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);

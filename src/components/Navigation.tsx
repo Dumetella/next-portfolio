@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled, { css, DefaultStyledComponent } from 'styled-components';
-import navLinks from '@en/navlinks';
 import { loaderDelay } from '@utils/loaderDelay';
 import useScrollDirection from '@hooks/useScrollDirection';
 import usePrefersReducedMotion from '@hooks/usePrefersReducedMotion';
@@ -11,10 +10,12 @@ import Menu from '@components/Menu';
 
 interface NavigationProps {
   isHome: boolean;
+  navLinks?: any;
 }
 
 const Navigation = (props: NavigationProps): JSX.Element => {
-  let isHome = props.isHome;
+  const navLinks = JSON.parse(props.navLinks).navLinks;
+  const isHome = props.isHome;
   const [isMounted, setIsMounted] = useState(!isHome);
   const scrollDirection = useScrollDirection();
   const [scrolledToTop, setScrolledToTop] = useState(true);
@@ -91,7 +92,7 @@ const Navigation = (props: NavigationProps): JSX.Element => {
               {/* <div>{ResumeLink}</div> */}
             </StyledLinks>
 
-            <Menu />
+            <Menu navLinks={navLinks} />
           </>
         ) : (
           <>
@@ -132,7 +133,7 @@ const Navigation = (props: NavigationProps): JSX.Element => {
             <TransitionGroup component={null}>
               {isMounted && (
                 <CSSTransition classNames={fadeClass} timeout={timeout}>
-                  <Menu />
+                  <Menu navLinks={navLinks} />
                 </CSSTransition>
               )}
             </TransitionGroup>

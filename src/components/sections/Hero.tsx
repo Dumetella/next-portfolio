@@ -5,7 +5,12 @@ import React, { useEffect, useState } from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
 
-export default function Hero(): JSX.Element {
+interface HeroProps {
+    Hero: any
+}
+
+export default function Hero(props: HeroProps): JSX.Element {
+    const content = JSON.parse(props.Hero);
     const [isMounted, setIsMounted] = useState(false);
     const prefersReducedMotion = usePrefersReducedMotion();
     useEffect(() => {
@@ -17,13 +22,13 @@ export default function Hero(): JSX.Element {
         return () => clearTimeout(timeout);
     });
 
-    const one = <h1>{'lorem'}</h1>;
-    const two = <h2 className="big-heading">{'ipsum'}</h2>;
-    const three = <h3 className="big-heading">{'abobus'}</h3>;
+    const one = <h1>{content.first}</h1>;
+    const two = <h2 className="big-heading">{content.second}</h2>;
+    const three = <h3 className="big-heading">{content.third}</h3>;
     const four = (
         <>
             <p>
-                {'Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus vel veniam dolorum, quae maxime ducimus earum alias sunt blanditiis veritatis, quo dolor mollitia doloribus iste? Quo similique nisi nam perferendis!'}
+                {content.fourth}
             </p>
         </>
     );

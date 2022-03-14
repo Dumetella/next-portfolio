@@ -15,12 +15,16 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-transition-group": "^4.4.2",
+    "remark": "^14.0.2",
+    "remark-html": "^15.0.1",
+    "scrollreveal": "^4.0.9",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@types/node": "17.0.21",
     "@types/react": "17.0.39",
     "@types/react-transition-group": "^4.4.4",
+    "@types/scrollreveal": "^0.0.7",
     "@types/styled-components": "^5.1.23",
     "eslint": "8.9.0",
     "eslint-config-next": "12.1.0",
