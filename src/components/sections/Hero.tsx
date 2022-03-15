@@ -3,14 +3,15 @@ import mixins from '@styles/mixins';
 import { loaderDelay, navDelay } from '@utils/loaderDelay';
 import React, { useEffect, useState } from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { HeroLocalisation } from 'src/model/Localisation';
 import styled from 'styled-components';
 
 interface HeroProps {
-    Hero: any
+    HeroLocale: string
 }
 
 export default function Hero(props: HeroProps): JSX.Element {
-    const content = JSON.parse(props.Hero);
+    const content = JSON.parse(props.HeroLocale) as HeroLocalisation;
     const [isMounted, setIsMounted] = useState(false);
     const prefersReducedMotion = usePrefersReducedMotion();
     useEffect(() => {
@@ -22,13 +23,13 @@ export default function Hero(props: HeroProps): JSX.Element {
         return () => clearTimeout(timeout);
     });
 
-    const one = <h1>{content.first}</h1>;
-    const two = <h2 className="big-heading">{content.second}</h2>;
-    const three = <h3 className="big-heading">{content.third}</h3>;
+    const one = <h1>{content.h1}</h1>;
+    const two = <h2 className="big-heading">{content.h2}</h2>;
+    const three = <h3 className="big-heading">{content.h3}</h3>;
     const four = (
         <>
             <p>
-                {content.fourth}
+                {content.p}
             </p>
         </>
     );

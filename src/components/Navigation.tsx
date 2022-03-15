@@ -7,14 +7,15 @@ import usePrefersReducedMotion from '@hooks/usePrefersReducedMotion';
 import mixins from '@styles/mixins';
 import Link from 'next/link';
 import Menu from '@components/Menu';
+import { NavigationLocalisation, navLink } from 'src/model/Localisation';
 
 interface NavigationProps {
   isHome: boolean;
-  navLinks?: any;
+  NavigationLocale: string
 }
 
 const Navigation = (props: NavigationProps): JSX.Element => {
-  const navLinks = JSON.parse(props.navLinks).navLinks;
+  const navLinks: NavigationLocalisation = JSON.parse(props.NavigationLocale).navLinks;
   const isHome = props.isHome;
   const [isMounted, setIsMounted] = useState(!isHome);
   const scrollDirection = useScrollDirection();
@@ -83,7 +84,7 @@ const Navigation = (props: NavigationProps): JSX.Element => {
             <StyledLinks>
               <ol>
                 {navLinks &&
-                  navLinks.map(({ url, name }: any, i: number) => (
+                  navLinks.map(({ url, name }: navLink, i: number) => (
                     <li key={i}>
                       <Link href={url}>{name}</Link>
                     </li>
@@ -92,7 +93,7 @@ const Navigation = (props: NavigationProps): JSX.Element => {
               {/* <div>{ResumeLink}</div> */}
             </StyledLinks>
 
-            <Menu navLinks={navLinks} />
+            <Menu NavigationLocale={props.NavigationLocale} />
           </>
         ) : (
           <>
@@ -109,7 +110,7 @@ const Navigation = (props: NavigationProps): JSX.Element => {
                 <TransitionGroup component={null}>
                   {isMounted &&
                     navLinks &&
-                    navLinks.map(({ url, name }: any, i: number) => (
+                    navLinks.map(({ url, name }: navLink, i: number) => (
                       <CSSTransition key={i} classNames={fadeDownClass} timeout={timeout}>
                         <li key={i} style={{ transitionDelay: `${isHome ? i * 100 : 0}ms` }}>
                           <Link href={url}>{name}</Link>
@@ -133,7 +134,7 @@ const Navigation = (props: NavigationProps): JSX.Element => {
             <TransitionGroup component={null}>
               {isMounted && (
                 <CSSTransition classNames={fadeClass} timeout={timeout}>
-                  <Menu navLinks={navLinks} />
+                  <Menu NavigationLocale={props.NavigationLocale} />
                 </CSSTransition>
               )}
             </TransitionGroup>

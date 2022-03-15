@@ -11,7 +11,7 @@ import Social from '@components/Social';
 
 interface LayoutProps {
     children: React.ReactChild;
-    Navigation?: any,
+    NavigationLocale: string,
 }
 
 export default function Layout(props: LayoutProps): JSX.Element {
@@ -23,7 +23,7 @@ export default function Layout(props: LayoutProps): JSX.Element {
                 <GlobalStyle />
                 <div id="root">
                     <StyledContent>
-                        <Navigation isHome={true} navLinks={props.Navigation} />
+                        <Navigation isHome={true} NavigationLocale={props.NavigationLocale} />
                         <Social isHome={true} />
                         <Email isHome={true} />
                         <div id="content">

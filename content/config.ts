@@ -7,6 +7,10 @@ const config = {
             name: 'GitHub',
             url: 'https://github.com/Dumetella'
         },
+        {
+            name: 'Telegram',
+            url: 'https://t.me/dumetella'
+        }
     ]
 };
 

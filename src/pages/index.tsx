@@ -6,25 +6,27 @@ import Hero from '@components/sections/Hero';
 import Projects from '@components/sections/Projects';
 import { GetServerSideProps, GetServerSidePropsResult } from 'next';
 import About from '@components/sections/About';
+import { AboutLocalisation, ContactLocalisation, HeroLocalisation, NavigationLocalisation } from 'src/model/Localisation';
 
 interface HomeProps {
-  Navigation?: any,
-  Hero?: any,
-  Featured?: any,
-  Projects?: any,
-  Contact?: any,
+  Navigation: string,
+  Hero: string,
+  Featured?: string,
+  Projects?: string,
+  Contact: string,
+  About: string,
 };
 
 const Home = (props: HomeProps): JSX.Element => {
 
   return (
-    <Layout Navigation={props.Navigation}>
+    <Layout NavigationLocale={props.Navigation}>
       <StyledMainContainer className="fillHeight">
-        <Hero Hero={props.Hero} />
-        <About />
-        <Featured />
-        <Projects />
-        <Contact />
+        <Hero HeroLocale={props.Hero} />
+        <About AboutLocale={props.About} />
+        {/* <Featured FeaturedProjects={props.Featured} />
+        <Projects ArchivePropjects={props.Projects} /> */}
+        <Contact ContactLocale={props.Contact} />
       </StyledMainContainer>
     </Layout>
   );
@@ -33,13 +35,16 @@ const Home = (props: HomeProps): JSX.Element => {
 export default Home
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }): Promise<GetServerSidePropsResult<HomeProps>> => {
-  const loc = locale == 'ru' ? 'ru' : 'en';
-  const Navigation = await import(`../../content/${loc}/navlinks.json`);
-  const Hero = await import(`../../content/${loc}/hero.json`);
+  const Navigation = await import(`../../content/${locale}/localisation/navlinks.json`);
+  const Hero = await import(`../../content/${locale}/localisation/hero.json`);
+  const About = await import(`../../content/${locale}/localisation/about.json`);
+  const Contact = await import(`../../content/${locale}/localisation/contact.json`);
   return {
     props: {
-      Navigation: JSON.stringify(Navigation),
-      Hero: JSON.stringify(Hero)
+      Navigation: JSON.stringify(Navigation as NavigationLocalisation),
+      Hero: JSON.stringify(Hero as HeroLocalisation),
+      About: JSON.stringify(About as AboutLocalisation),
+      Contact: JSON.stringify(Contact as ContactLocalisation)
     },
   };
 };

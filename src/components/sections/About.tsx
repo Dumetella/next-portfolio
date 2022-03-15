@@ -4,8 +4,14 @@ import srConfig from '@utils/sr';
 import usePrefersReducedMotion from '@hooks/usePrefersReducedMotion';
 import Image from 'next/image';
 import mixins from '@styles/mixins';
+import { AboutLocalisation } from 'src/model/Localisation';
 
-const About = (): JSX.Element => {
+interface AboutProps {
+  AboutLocale: string
+}
+
+const About = (props: AboutProps): JSX.Element => {
+  const content = JSON.parse(props.AboutLocale) as AboutLocalisation;
   const revealContainer = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -26,13 +32,12 @@ const About = (): JSX.Element => {
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
-      <h2 className="numbered-heading">About Me</h2>
+      <h2 className="numbered-heading">{content.h1}</h2>
 
       <div className="inner">
         <StyledText>
           <div>
-
-            <p>Here are a few technologies I’ve been working with recently:</p>
+            <p>{content.p2}</p>
           </div>
 
           <ul className="skills-list">
