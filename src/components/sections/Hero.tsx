@@ -3,7 +3,7 @@ import mixins from '@styles/mixins';
 import { loaderDelay, navDelay } from '@utils/loaderDelay';
 import React, { useEffect, useState } from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { HeroLocalisation } from 'src/model/Localisation';
+import { HeroLocalization } from 'src/model/Localization';
 import styled from 'styled-components';
 
 interface HeroProps {
@@ -11,7 +11,7 @@ interface HeroProps {
 }
 
 export default function Hero(props: HeroProps): JSX.Element {
-    const content = JSON.parse(props.HeroLocale) as HeroLocalisation;
+    const content = JSON.parse(props.HeroLocale) as HeroLocalization;
     const [isMounted, setIsMounted] = useState(false);
     const prefersReducedMotion = usePrefersReducedMotion();
     useEffect(() => {

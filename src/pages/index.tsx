@@ -6,7 +6,7 @@ import Hero from '@components/sections/Hero';
 import Projects from '@components/sections/Projects';
 import { GetServerSideProps, GetServerSidePropsResult } from 'next';
 import About from '@components/sections/About';
-import { AboutLocalisation, ContactLocalisation, HeroLocalisation, NavigationLocalisation } from 'src/model/Localisation';
+import { AboutLocalization, ContactLocalization, HeroLocalization, NavigationLocalization } from 'src/model/Localization';
 
 interface HomeProps {
   Navigation: string,
@@ -35,16 +35,16 @@ const Home = (props: HomeProps): JSX.Element => {
 export default Home
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }): Promise<GetServerSidePropsResult<HomeProps>> => {
-  const Navigation = await import(`../../content/${locale}/localisation/navlinks.json`);
-  const Hero = await import(`../../content/${locale}/localisation/hero.json`);
-  const About = await import(`../../content/${locale}/localisation/about.json`);
-  const Contact = await import(`../../content/${locale}/localisation/contact.json`);
+  const Navigation = await import(`../../content/${locale}/localization/navlinks.json`);
+  const Hero = await import(`../../content/${locale}/localization/hero.json`);
+  const About = await import(`../../content/${locale}/localization/about.json`);
+  const Contact = await import(`../../content/${locale}/localization/contact.json`);
   return {
     props: {
-      Navigation: JSON.stringify(Navigation as NavigationLocalisation),
-      Hero: JSON.stringify(Hero as HeroLocalisation),
-      About: JSON.stringify(About as AboutLocalisation),
-      Contact: JSON.stringify(Contact as ContactLocalisation)
+      Navigation: JSON.stringify(Navigation as NavigationLocalization),
+      Hero: JSON.stringify(Hero as HeroLocalization),
+      About: JSON.stringify(About as AboutLocalization),
+      Contact: JSON.stringify(Contact as ContactLocalization)
     },
   };
 };

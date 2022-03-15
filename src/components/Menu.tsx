@@ -4,7 +4,7 @@ import styled, { DefaultStyledComponent } from 'styled-components';
 import KEY_CODES from '@utils/keycodes';
 import useOnClickOutside from '@hooks/useOnClickOutside';
 import mixins from '@styles/mixins';
-import { NavigationLocalisation } from 'src/model/Localisation';
+import { NavigationLocalization } from 'src/model/Localization';
 
 interface MenuProps {
   NavigationLocale: string,
@@ -12,7 +12,7 @@ interface MenuProps {
 
 const Menu = (props: MenuProps): JSX.Element => {
 
-  const navLinks: NavigationLocalisation = JSON.parse(props.NavigationLocale).navLinks;
+  const navLinks: NavigationLocalization = JSON.parse(props.NavigationLocale).navLinks;
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);

@@ -1,19 +1,19 @@
 {
     "navLinks": [
         {
-            "name": "Чинчопа",
+            "name": "Обо мне",
             "url": "/#about"
         },
         {
-            "name": "Прикольчики",
+            "name": "Опыт",
             "url": "/#jobs"
         },
         {
-            "name": "Проектусы",
+            "name": "Проекты",
             "url": "/#projects"
         },
         {
-            "name": "Здарова",
+            "name": "Связаться",
             "url": "/#contact"
         }
     ]

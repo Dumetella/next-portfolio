@@ -1,4 +1,4 @@
-export interface HeroLocalisation {
+export interface HeroLocalization {
     h1: string,
     h2: string,
     h3: string,
@@ -10,17 +10,18 @@ export type navLink = {
     url: string
 }
 
-export type NavigationLocalisation = navLink[]
+export type NavigationLocalization = navLink[]
 
 
-export interface AboutLocalisation {
-    "h1": string,
+export interface AboutLocalization {
+    "h2": string,
     "p1": string,
     "p2": string,
-    "p3": string
+    "p3": string,
+    "p4": string
 }
 
-export interface ContactLocalisation {
+export interface ContactLocalization {
     "h1": string,
     "h2": string,
     "p": string,

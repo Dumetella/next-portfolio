@@ -4,14 +4,14 @@ import usePrefersReducedMotion from '@hooks/usePrefersReducedMotion';
 import mixins from '@styles/mixins';
 import srConfig from '@utils/sr';
 import config from '@content/config';
-import { ContactLocalisation } from 'src/model/Localisation';
+import { ContactLocalization } from 'src/model/Localization';
 
 interface ContactProps {
   ContactLocale: string
 }
 
 const Contact = (props: ContactProps): JSX.Element => {
-  const content = JSON.parse(props.ContactLocale) as ContactLocalisation;
+  const content = JSON.parse(props.ContactLocale) as ContactLocalization;
   const revealContainer = useRef<HTMLElement>(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 

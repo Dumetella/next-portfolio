@@ -7,7 +7,7 @@ import usePrefersReducedMotion from '@hooks/usePrefersReducedMotion';
 import mixins from '@styles/mixins';
 import Link from 'next/link';
 import Menu from '@components/Menu';
-import { NavigationLocalisation, navLink } from 'src/model/Localisation';
+import { NavigationLocalization, navLink } from 'src/model/Localization';
 
 interface NavigationProps {
   isHome: boolean;
@@ -15,7 +15,7 @@ interface NavigationProps {
 }
 
 const Navigation = (props: NavigationProps): JSX.Element => {
-  const navLinks: NavigationLocalisation = JSON.parse(props.NavigationLocale).navLinks;
+  const navLinks: NavigationLocalization = JSON.parse(props.NavigationLocale).navLinks;
   const isHome = props.isHome;
   const [isMounted, setIsMounted] = useState(!isHome);
   const scrollDirection = useScrollDirection();

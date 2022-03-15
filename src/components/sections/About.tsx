@@ -4,14 +4,14 @@ import srConfig from '@utils/sr';
 import usePrefersReducedMotion from '@hooks/usePrefersReducedMotion';
 import Image from 'next/image';
 import mixins from '@styles/mixins';
-import { AboutLocalisation } from 'src/model/Localisation';
+import { AboutLocalization } from 'src/model/Localization';
 
 interface AboutProps {
   AboutLocale: string
 }
 
 const About = (props: AboutProps): JSX.Element => {
-  const content = JSON.parse(props.AboutLocale) as AboutLocalisation;
+  const content = JSON.parse(props.AboutLocale) as AboutLocalization;
   const revealContainer = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -32,14 +32,15 @@ const About = (props: AboutProps): JSX.Element => {
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
-      <h2 className="numbered-heading">{content.h1}</h2>
+      <h2 className="numbered-heading">{content.h2}</h2>
 
       <div className="inner">
         <StyledText>
           <div>
+            <p>{content.p1}</p>
             <p>{content.p2}</p>
+            <p>{content.p4}</p>
           </div>
-
           <ul className="skills-list">
             {skills && skills.map((skill, i) => <li key={i}>{skill}</li>)}
           </ul>
