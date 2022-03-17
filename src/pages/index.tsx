@@ -9,24 +9,24 @@ import About from '@components/sections/About';
 import { AboutLocalization, ContactLocalization, HeroLocalization, NavigationLocalization } from 'src/model/Localization';
 
 interface HomeProps {
-  Navigation: string,
-  Hero: string,
-  Featured?: string,
-  Projects?: string,
-  Contact: string,
-  About: string,
+  NavigationLocale: string,
+  HeroLocale: string,
+  FeaturedLocale?: string,
+  FeaturedProjects?: string,
+  ContactLocale: string,
+  AboutLocale: string,
 };
 
 const Home = (props: HomeProps): JSX.Element => {
 
   return (
-    <Layout NavigationLocale={props.Navigation}>
+    <Layout NavigationLocale={props.NavigationLocale}>
       <StyledMainContainer className="fillHeight">
-        <Hero HeroLocale={props.Hero} />
-        <About AboutLocale={props.About} />
-        {/* <Featured FeaturedProjects={props.Featured} />
-        <Projects ArchivePropjects={props.Projects} /> */}
-        <Contact ContactLocale={props.Contact} />
+        <Hero HeroLocale={props.HeroLocale} />
+        <About AboutLocale={props.AboutLocale} />
+        {/* <Featured FeaturedProjects={props.FeaturedProjects} FeaturedLocale={props.FeaturedLocale} /> */}
+        {/* <Projects ArchivePropjects={props.Projects} />  */}
+        <Contact ContactLocale={props.ContactLocale} />
       </StyledMainContainer>
     </Layout>
   );
@@ -35,16 +35,17 @@ const Home = (props: HomeProps): JSX.Element => {
 export default Home
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }): Promise<GetServerSidePropsResult<HomeProps>> => {
-  const Navigation = await import(`../../content/${locale}/localization/navlinks.json`);
-  const Hero = await import(`../../content/${locale}/localization/hero.json`);
-  const About = await import(`../../content/${locale}/localization/about.json`);
-  const Contact = await import(`../../content/${locale}/localization/contact.json`);
+  const NavigationLocale = await import(`../../content/${locale}/localization/navlinks.json`);
+  const HeroLocale = await import(`../../content/${locale}/localization/hero.json`);
+  const AboutLocale = await import(`../../content/${locale}/localization/about.json`);
+  const ContactLocale = await import(`../../content/${locale}/localization/contact.json`);
+
   return {
     props: {
-      Navigation: JSON.stringify(Navigation as NavigationLocalization),
-      Hero: JSON.stringify(Hero as HeroLocalization),
-      About: JSON.stringify(About as AboutLocalization),
-      Contact: JSON.stringify(Contact as ContactLocalization)
+      NavigationLocale: JSON.stringify(NavigationLocale as NavigationLocalization),
+      HeroLocale: JSON.stringify(HeroLocale as HeroLocalization),
+      AboutLocale: JSON.stringify(AboutLocale as AboutLocalization),
+      ContactLocale: JSON.stringify(ContactLocale as ContactLocalization)
     },
   };
 };
