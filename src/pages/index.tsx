@@ -7,6 +7,7 @@ import Projects from '@components/sections/Projects';
 import { GetServerSideProps, GetServerSidePropsResult } from 'next';
 import About from '@components/sections/About';
 import { AboutLocalization, ContactLocalization, HeroLocalization, NavigationLocalization } from 'src/model/Localization';
+import { MarkdownReader } from 'src/lib/getMarkdown';
 
 interface HomeProps {
   NavigationLocale: string,
@@ -35,11 +36,21 @@ const Home = (props: HomeProps): JSX.Element => {
 export default Home
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }): Promise<GetServerSidePropsResult<HomeProps>> => {
-  const NavigationLocale = await import(`../../content/${locale}/localization/navlinks.json`);
-  const HeroLocale = await import(`../../content/${locale}/localization/hero.json`);
-  const AboutLocale = await import(`../../content/${locale}/localization/about.json`);
-  const ContactLocale = await import(`../../content/${locale}/localization/contact.json`);
-
+  const loc = locale === 'ru' ? 'ru' : 'en';
+  const NavigationLocale = await import(`../../content/${loc}/localization/navlinks.json`);
+  const HeroLocale = await import(`../../content/${loc}/localization/hero.json`);
+  const AboutLocale = await import(`../../content/${loc}/localization/about.json`);
+  const ContactLocale = await import(`../../content/${loc}/localization/contact.json`);
+  const md = new MarkdownReader(loc);
+  const aboba = md.getAllContent('featured', [
+    'title',
+    'date',
+    'slug',
+    'author',
+    'coverImage',
+    'excerpt',
+  ]);
+  console.log(aboba);
   return {
     props: {
       NavigationLocale: JSON.stringify(NavigationLocale as NavigationLocalization),
