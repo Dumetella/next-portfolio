@@ -14,11 +14,11 @@ export class MarkdownReader {
         return join(process.cwd(), 'content', this.locale, folder)
     }
 
-    public getContentSlugs(): string[] {
+    private getContentSlugs(): string[] {
         return fs.readdirSync(this.cwd);
     }
 
-    public getContentBySlug(slug: string, fields: string[] = []) {
+    private getContentBySlug(slug: string, fields: string[] = []) {
         const realSlug = slug.replace(/\.md$/, '');
         const fullPath = join(this.cwd, `${realSlug}.md`);
         const fileContents = fs.readFileSync(fullPath, 'utf8');

@@ -8,21 +8,22 @@ import Image from 'next/image';
 
 interface FeaturedProps {
   FeaturedLocale?: string,
-  FeaturedProjects?: string
+  FeaturedProjects: string
 }
 
 const Featured = (props: FeaturedProps) => {
-
+  // const contentLocale = JSON.parse(props.FeaturedLocale);
+  const featuredProjects = JSON.parse(props.FeaturedProjects);
   const revealTitle = useRef<HTMLHeadingElement>(null);
   const revealProjects = useRef([]);
   const prefersReducedMotion = usePrefersReducedMotion();
-
+  console.log(featuredProjects)
   useEffect(() => {
     if (prefersReducedMotion) {
       return;
     }
     async function reveal() {
-      const sr = (await import("scrollreveal")).default
+      const sr = (await import("scrollreveal")).default;
       if (revealTitle.current) {
         sr.reveal(revealTitle.current, srConfig());
         revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
@@ -33,53 +34,48 @@ const Featured = (props: FeaturedProps) => {
 
   return (
     <section id="projects">
-      <h2 className="numbered-heading" ref={revealTitle}>
+      <h2 className="numbered-heading" >
         Some Things I’ve Built
       </h2>
-
       <StyledProjectsGrid>
         {featuredProjects &&
-          featuredProjects.map(({ node }, i) => {
-            const { frontmatter, html } = node;
-            const { external, title, tech, github, cover, cta } = frontmatter;
-            const image = getImage(cover);
-
+          featuredProjects.map((node: any, i: number) => {
             return (
-              <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
+              <StyledProject key={i}>
                 <div className="project-content">
                   <div>
                     <p className="project-overline">Featured Project</p>
 
                     <h3 className="project-title">
-                      <a href={external}>{title}</a>
+                      <a href={''}>{node.title}</a>
                     </h3>
 
                     <div
                       className="project-description"
-                      dangerouslySetInnerHTML={{ __html: html }}
+                      dangerouslySetInnerHTML={{ __html: node.content }}
                     />
 
-                    {tech.length && (
+                    {node.tech.length && (
                       <ul className="project-tech-list">
-                        {tech.map((tech, i) => (
+                        {node.tech.map((tech: string, i: number) => (
                           <li key={i}>{tech}</li>
                         ))}
                       </ul>
                     )}
 
                     <div className="project-links">
-                      {cta && (
-                        <a href={cta} aria-label="Course Link" className="cta">
+                      {node.cta && (
+                        <a href={node.cta} aria-label="Course Link" className="cta">
                           Learn More
                         </a>
                       )}
-                      {github && (
-                        <a href={github} aria-label="GitHub Link">
+                      {node.github && (
+                        <a href={node.github} aria-label="GitHub Link">
                           <Icon name="GitHub" />
                         </a>
                       )}
-                      {external && !cta && (
-                        <a href={external} aria-label="External Link" className="external">
+                      {node.external && !node.cta && (
+                        <a href={node.external} aria-label="External Link" className="external">
                           <Icon name="External" />
                         </a>
                       )}
@@ -88,8 +84,8 @@ const Featured = (props: FeaturedProps) => {
                 </div>
 
                 <div className="project-image">
-                  <a href={external ? external : github ? github : '#'}>
-                    <Image src={image} alt={title} className="img" />
+                  <a href={node.external ? node.external : node.github ? node.github : '#'}>
+                    <Image src={node.cover} alt={node.title} layout="responsive" width={700} height={350} className="img" />
                   </a>
                 </div>
               </StyledProject>
@@ -195,19 +191,19 @@ const StyledProject = styled.li`
   }
   .project-overline {
     margin: 10px 0;
-    color: var(--green);
+    color: ${({ theme }) => theme.colors.accent};
     font-family: var(--font-mono);
     font-size: var(--fz-xs);
     font-weight: 400;
   }
   .project-title {
-    color: var(--lightest-slate);
+    color: ${({ theme }) => theme.colors.textBright};
     font-size: clamp(24px, 5vw, 28px);
     @media (min-width: 768px) {
       margin: 0 0 20px;
     }
     @media (max-width: 768px) {
-      color: var(--white);
+      color: ${({ theme }) => theme.colors.white};
       a {
         position: static;
         &:before {
@@ -229,8 +225,8 @@ const StyledProject = styled.li`
     z-index: 2;
     padding: 25px;
     border-radius: var(--border-radius);
-    background-color: var(--light-navy);
-    color: var(--light-slate);
+    background-color: ${({ theme }) => theme.colors.backgroundLight};
+    color: ${({ theme }) => theme.colors.textLight};
     font-size: var(--fz-lg);
     @media (max-width: 768px) {
       padding: 20px 0;
@@ -244,7 +240,7 @@ const StyledProject = styled.li`
       ${mixins.inlineLink};
     }
     strong {
-      color: var(--white);
+      color: ${({ theme }) => theme.colors.white};
       font-weight: normal;
     }
   }
@@ -258,7 +254,7 @@ const StyledProject = styled.li`
     list-style: none;
     li {
       margin: 0 20px 5px 0;
-      color: var(--light-slate);
+      color: ${({ theme }) => theme.colors.textLight};
       font-family: var(--font-mono);
       font-size: var(--fz-xs);
       white-space: nowrap;
@@ -267,7 +263,7 @@ const StyledProject = styled.li`
       margin: 10px 0;
       li {
         margin: 0 10px 5px 0;
-        color: var(--lightest-slate);
+        color: ${({ theme }) => theme.colors.textBright};
       }
     }
   }
@@ -277,7 +273,7 @@ const StyledProject = styled.li`
     position: relative;
     margin-top: 10px;
     margin-left: -10px;
-    color: var(--lightest-slate);
+    color: ${({ theme }) => theme.colors.textBright};
     a {
       ${mixins.flexCenter};
       padding: 10px;
@@ -312,7 +308,7 @@ const StyledProject = styled.li`
     a {
       width: 100%;
       height: 100%;
-      background-color: var(--green);
+      background-color: ${({ theme }) => theme.colors.accent};
       border-radius: var(--border-radius);
       vertical-align: middle;
       &:hover,
@@ -336,7 +332,7 @@ const StyledProject = styled.li`
         bottom: 0;
         z-index: 3;
         transition: var(--transition);
-        background-color: var(--navy);
+        background-color: ${({ theme }) => theme.colors.backgroundNormal};
         mix-blend-mode: screen;
       }
     }
