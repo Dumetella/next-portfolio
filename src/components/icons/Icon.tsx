@@ -9,6 +9,7 @@ import GithubIcon from './GithubIcon';
 import InstagramIcon from './instagramIcon';
 import LinkedinIcon from './LinkedinIcon';
 import PlayStoreIcon from './PlaystoreIcon';
+import TelegramIcon from './TelegramIcon';
 import TwitterIcon from './TwitterIcon';
 
 
@@ -46,6 +47,8 @@ const Icon = (props: IconProps): JSX.Element => {
             return <div></div>;
         case 'Twitter':
             return <TwitterIcon />;
+        case 'Telegram':
+            return <TelegramIcon />;
         default:
             return <ExternalIcon />;
     }
