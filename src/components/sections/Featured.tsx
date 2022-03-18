@@ -5,19 +5,19 @@ import Icon from '@components/icons/Icon';
 import usePrefersReducedMotion from '@hooks/usePrefersReducedMotion';
 import mixins from '@styles/mixins';
 import Image from 'next/image';
+import { FeaturedLocalization } from 'src/model/Localization';
 
 interface FeaturedProps {
-  FeaturedLocale?: string,
+  FeaturedLocale: string,
   FeaturedProjects: string
 }
 
 const Featured = (props: FeaturedProps) => {
-  // const contentLocale = JSON.parse(props.FeaturedLocale);
+  const contentLocale: FeaturedLocalization = JSON.parse(props.FeaturedLocale);
   const featuredProjects = JSON.parse(props.FeaturedProjects);
   const revealTitle = useRef<HTMLHeadingElement>(null);
   const revealProjects = useRef([]);
   const prefersReducedMotion = usePrefersReducedMotion();
-  console.log(featuredProjects)
   useEffect(() => {
     if (prefersReducedMotion) {
       return;
@@ -35,7 +35,7 @@ const Featured = (props: FeaturedProps) => {
   return (
     <section id="projects">
       <h2 className="numbered-heading" >
-        Some Things I’ve Built
+        {contentLocale.h2}
       </h2>
       <StyledProjectsGrid>
         {featuredProjects &&
@@ -44,7 +44,7 @@ const Featured = (props: FeaturedProps) => {
               <StyledProject key={i}>
                 <div className="project-content">
                   <div>
-                    <p className="project-overline">Featured Project</p>
+                    <p className="project-overline">{contentLocale.p}</p>
 
                     <h3 className="project-title">
                       <a href={''}>{node.title}</a>
@@ -85,7 +85,7 @@ const Featured = (props: FeaturedProps) => {
 
                 <div className="project-image">
                   <a href={node.external ? node.external : node.github ? node.github : '#'}>
-                    <Image src={node.cover} alt={node.title} layout="responsive" width={700} height={350} className="img" />
+                    <Image src={node.cover} alt={node.title} layout="responsive" width={600} height={350} className="img" />
                   </a>
                 </div>
               </StyledProject>

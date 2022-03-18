@@ -14,7 +14,7 @@ function usePrefersReducedMotion() {
             !window.matchMedia(QUERY).matches
         )
         // Register our event listener
-        const listener = (e: any) => {
+        const listener = (e: MediaQueryListEvent) => {
             setPrefersReducedMotion(!e.matches);
         };
         mediaQueryList.addEventListener('change', listener);

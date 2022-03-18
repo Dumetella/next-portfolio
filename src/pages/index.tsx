@@ -12,7 +12,7 @@ import { MarkdownReader } from 'src/lib/MarkdownReader';
 interface HomeProps {
   NavigationLocale: string,
   HeroLocale: string,
-  FeaturedLocale?: string,
+  FeaturedLocale: string,
   FeaturedProjects: string,
   ContactLocale: string,
   AboutLocale: string,
@@ -42,6 +42,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }): Promis
   const HeroLocale = await import(`../../content/${loc}/localization/hero.json`);
   const AboutLocale = await import(`../../content/${loc}/localization/about.json`);
   const ContactLocale = await import(`../../content/${loc}/localization/contact.json`);
+  const FeaturedLocale = await import(`../../content/${loc}/localization/featured.json`);
   const FeaturedProjects = md.getAllContent('featured', [
     'title',
     'date',
@@ -57,7 +58,8 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }): Promis
       HeroLocale: JSON.stringify(HeroLocale as HeroLocalization),
       AboutLocale: JSON.stringify(AboutLocale as AboutLocalization),
       ContactLocale: JSON.stringify(ContactLocale as ContactLocalization),
-      FeaturedProjects: JSON.stringify(FeaturedProjects)
+      FeaturedProjects: JSON.stringify(FeaturedProjects),
+      FeaturedLocale: JSON.stringify(FeaturedLocale)
     },
   };
 };

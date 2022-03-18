@@ -7,9 +7,7 @@ external: 'https://next-pizza-ecru.vercel.app/'
 tech:
   - Next.js
   - React
-  - TypeScript
   - MobX
   - styled-components
 ---
-
 A Demo copy of popular russian pizza delivery franchize.

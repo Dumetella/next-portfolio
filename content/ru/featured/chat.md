@@ -1,15 +1,12 @@
 ---
 date: '2'
-title: 'React Chat'
+title: 'React Чат'
 cover: '/images/chat.png'
 github: 'https://github.com/Dumetella/react-chat-front'
 external: 'dumetella-react-chat.herokuapp.com/'
 tech:
-  - Next.js
   - React
-  - TypeScript
-  - MobX
+  - Redux
   - styled-components
 ---
-
-Websocket chat inspired by the old RTC chats.
+Вебсокет чат наподобие старых RTC веб-приложений.

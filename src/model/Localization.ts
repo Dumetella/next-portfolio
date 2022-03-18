@@ -27,3 +27,8 @@ export interface ContactLocalization {
     "p": string,
     "a": string
 }
+
+export interface FeaturedLocalization {
+    "h2": string,
+    "p": string,
+}
