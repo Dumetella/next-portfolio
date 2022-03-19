@@ -21,7 +21,7 @@ export default function Hero(props: HeroProps): JSX.Element {
 
         const timeout = setTimeout(() => setIsMounted(true), navDelay);
         return () => clearTimeout(timeout);
-    });
+    }, [prefersReducedMotion]);
 
     const one = <h1>{content.h1}</h1>;
     const two = <h2 className="big-heading">{content.h2}</h2>;

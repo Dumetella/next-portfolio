@@ -22,7 +22,7 @@ export default function Side(props: SideProps): JSX.Element {
         }
         const timeout = setTimeout(() => setIsMounted(true), loaderDelay);
         return () => clearTimeout(timeout);
-    });
+    }, [isHome, prefersReducedMotion]);
 
     return (
         <StyledSideElement orientation={props.orientation}>
