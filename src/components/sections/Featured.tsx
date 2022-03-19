@@ -47,7 +47,7 @@ const Featured = (props: FeaturedProps) => {
                     <p className="project-overline">{contentLocale.p}</p>
 
                     <h3 className="project-title">
-                      <a href={''}>{node.title}</a>
+                      <a href={node.external ? node.external : node.github}>{node.title}</a>
                     </h3>
 
                     <div
@@ -85,7 +85,7 @@ const Featured = (props: FeaturedProps) => {
 
                 <div className="project-image">
                   <a href={node.external ? node.external : node.github ? node.github : '#'}>
-                    <Image src={node.cover} alt={node.title} layout="responsive" width={600} height={350} className="img" />
+                    <Image src={node.cover} alt={node.title} layout="fill" className="img" />
                   </a>
                 </div>
               </StyledProject>
@@ -300,6 +300,7 @@ const StyledProject = styled.li`
     grid-row: 1 / -1;
     position: relative;
     z-index: 1;
+    height: 100%;
     @media (max-width: 768px) {
       grid-column: 1 / -1;
       height: 100%;

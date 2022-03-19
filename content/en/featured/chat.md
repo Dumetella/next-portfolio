@@ -3,7 +3,7 @@ date: '2'
 title: 'React Chat'
 cover: '/images/chat.png'
 github: 'https://github.com/Dumetella/react-chat-front'
-external: 'dumetella-react-chat.herokuapp.com/'
+external: 'https://dumetella-react-chat.herokuapp.com/'
 tech:
   - React
   - Redux
