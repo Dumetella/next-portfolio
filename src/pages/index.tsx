@@ -3,17 +3,19 @@ import Layout from '@components/Layout';
 import Contact from '@components/sections/Contact';
 import Featured from '@components/sections/Featured';
 import Hero from '@components/sections/Hero';
-import Projects from '@components/sections/Projects';
 import { GetServerSideProps, GetServerSidePropsResult } from 'next';
 import About from '@components/sections/About';
 import { AboutLocalization, ContactLocalization, HeroLocalization, NavigationLocalization } from 'src/model/Localization';
 import { MarkdownReader } from 'src/lib/MarkdownReader';
+import ArchiveProjects from '@components/sections/ArchiveProjects';
 
 interface HomeProps {
   NavigationLocale: string,
   HeroLocale: string,
   FeaturedLocale: string,
   FeaturedProjects: string,
+  ArchiveProjects: string,
+  ArchiveLocale?: string,
   ContactLocale: string,
   AboutLocale: string,
 };
@@ -26,7 +28,7 @@ const Home = (props: HomeProps): JSX.Element => {
         <Hero HeroLocale={props.HeroLocale} />
         <About AboutLocale={props.AboutLocale} />
         <Featured FeaturedProjects={props.FeaturedProjects} FeaturedLocale={props.FeaturedLocale} />
-        {/* <Projects ArchivePropjects={props.Projects} />  */}
+        <ArchiveProjects ArchiveProjectsContent={props.ArchiveProjects} />
         <Contact ContactLocale={props.ContactLocale} />
       </StyledMainContainer>
     </Layout>
@@ -52,6 +54,15 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }): Promis
     'cover',
     'content'
   ]);
+  const ArchiveProjects = md.getAllContent('archive', [
+    'title',
+    'date',
+    'github',
+    'external',
+    'tech',
+    'cover',
+    'content'
+  ]);
   return {
     props: {
       NavigationLocale: JSON.stringify(NavigationLocale as NavigationLocalization),
@@ -59,7 +70,8 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }): Promis
       AboutLocale: JSON.stringify(AboutLocale as AboutLocalization),
       ContactLocale: JSON.stringify(ContactLocale as ContactLocalization),
       FeaturedProjects: JSON.stringify(FeaturedProjects),
-      FeaturedLocale: JSON.stringify(FeaturedLocale)
+      FeaturedLocale: JSON.stringify(FeaturedLocale),
+      ArchiveProjects: JSON.stringify(ArchiveProjects)
     },
   };
 };

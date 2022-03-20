@@ -29,7 +29,7 @@ export default function Layout(props: LayoutProps): JSX.Element {
                         <div id="content">
                             {props.children}
                         </div>
-                        <Footer />
+                        {/* <Footer /> */}
                     </StyledContent>
                 </div>
             </ThemeProvider>
