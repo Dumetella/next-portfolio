@@ -8,138 +8,139 @@ import srConfig from '@utils/sr';
 import mixins from '@styles/mixins';
 
 interface ArchiveProjectsProps {
-    ArchiveProjectsLocale?: string,
-    ArchiveProjectsContent: string,
+  ArchiveProjectsLocale?: string,
+  ArchiveProjectsContent: string,
 }
 
 const ArchiveProjects = (props: ArchiveProjectsProps): JSX.Element => {
 
-    // const localization = JSON.parse(props.ArchiveProjectsLocale);
-    const content = JSON.parse(props.ArchiveProjectsContent);
+  // const localization = JSON.parse(props.ArchiveProjectsLocale);
+  const content = JSON.parse(props.ArchiveProjectsContent);
 
-    const [showMore, setShowMore] = useState(false);
-    const revealTitle = useRef<HTMLHeadingElement>(null);
-    const revealArchiveLink = useRef<HTMLAnchorElement>(null);
-    const revealProjects = useRef<HTMLLIElement[]>([]);
-    const prefersReducedMotion = usePrefersReducedMotion();
+  const [showMore, setShowMore] = useState(false);
+  const revealTitle = useRef<HTMLHeadingElement>(null);
+  const revealArchiveLink = useRef<HTMLAnchorElement>(null);
+  const revealProjects = useRef<HTMLLIElement[]>([]);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
-    useEffect(() => {
-        if (prefersReducedMotion) {
-            return;
-        }
-        async function reveal() {
-            const sr = (await import("scrollreveal")).default;
-            if (revealTitle.current) {
-                sr.reveal(revealTitle.current, srConfig());
-            }
-            if (revealArchiveLink.current) {
-                sr.reveal(revealArchiveLink.current, srConfig());
-            }
-            revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
-        }
-        reveal();
-    }, [prefersReducedMotion]);
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      return;
+    }
+    async function reveal() {
+      const sr = (await import("scrollreveal")).default;
+      if (revealTitle.current) {
+        sr().reveal(revealTitle.current, srConfig());
+      }
+      if (revealArchiveLink.current) {
+        sr().reveal(revealArchiveLink.current, srConfig());
+      }
+      revealProjects.current.forEach((ref, i) => sr().reveal(ref, srConfig(i * 100)));
+    }
+    reveal();
+  }, [prefersReducedMotion]);
 
-    const GRID_LIMIT = 6;
-    const firstSix = content.slice(0, GRID_LIMIT);
-    const projectsToShow = showMore ? content : firstSix;
+  const GRID_LIMIT = 6;
+  const firstSix = content.slice(0, GRID_LIMIT);
+  const projectsToShow = showMore ? content : firstSix;
 
-    const projectInner = (node: any): JSX.Element => {
-
-        return (
-            <div className="project-inner">
-                <header>
-                    <div className="project-top">
-                        <div className="folder">
-                            <Icon name="Folder" />
-                        </div>
-                        <div className="project-links">
-                            {node.github && (
-                                <a href={node.github} aria-label="GitHub Link" target="_blank" rel="noreferrer">
-                                    <Icon name="GitHub" />
-                                </a>
-                            )}
-                            {node.external && (
-                                <a
-                                    href={node.external}
-                                    aria-label="External Link"
-                                    className="external"
-                                    target="_blank"
-                                    rel="noreferrer">
-                                    <Icon name="External" />
-                                </a>
-                            )}
-                        </div>
-                    </div>
-
-                    <h3 className="project-title">
-                        <a href={node.external} target="_blank" rel="noreferrer">
-                            {node.title}
-                        </a>
-                    </h3>
-
-                    <div className="project-description" dangerouslySetInnerHTML={{ __html: node.content }} />
-                </header>
-
-                <footer>
-                    {node.tech && (
-                        <ul className="project-tech-list">
-                            {node.tech.map((tech: string, i: number) => (
-                                <li key={i}>{tech}</li>
-                            ))}
-                        </ul>
-                    )}
-                </footer>
-            </div>
-        );
-    };
-
+  const projectInner = (node: any): JSX.Element => {
     return (
-        <StyledProjectsSection>
-            <h2 ref={revealTitle}>Other Noteworthy Projects</h2>
-
-            <Link href="/archive" >
-                <a className="inline-link archive-link" ref={revealArchiveLink}>
-                    view the archive
+      <div className="project-inner">
+        <header>
+          <div className="project-top">
+            <div className="folder">
+              <Icon name="Folder" />
+            </div>
+            <div className="project-links">
+              {node.github && (
+                <a href={node.github} aria-label="GitHub Link" target="_blank" rel="noreferrer">
+                  <Icon name="GitHub" />
                 </a>
-            </Link>
+              )}
+              {node.external && (
+                <a
+                  href={node.external}
+                  aria-label="External Link"
+                  className="external"
+                  target="_blank"
+                  rel="noreferrer">
+                  <Icon name="External" />
+                </a>
+              )}
+            </div>
+          </div>
 
-            <ul className="projects-grid">
-                {prefersReducedMotion ? (
-                    <>
-                        {projectsToShow &&
-                            projectsToShow.map((node: any, i: number) => (
-                                <StyledProject key={i}>{projectInner(node)}</StyledProject>
-                            ))}
-                    </>
-                ) : (
-                    <TransitionGroup component={null}>
-                        {projectsToShow &&
-                            projectsToShow.map((node: any, i: number) => (
-                                <CSSTransition
-                                    key={i}
-                                    classNames="fadeup"
-                                    timeout={i >= GRID_LIMIT ? (i - GRID_LIMIT) * 300 : 300}
-                                    exit={false}>
-                                    <StyledProject
-                                        key={i}
-                                        ref={el => (revealProjects.current[i] = el as HTMLLIElement)}
-                                        style={{
-                                            transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
-                                        }}>
-                                        {projectInner(node)}
-                                    </StyledProject>
-                                </CSSTransition>
-                            ))}
-                    </TransitionGroup>
-                )}
+          <h3 className="project-title">
+            <a href={node.external} target="_blank" rel="noreferrer">
+              {node.title}
+            </a>
+          </h3>
+
+          <div className="project-description" dangerouslySetInnerHTML={{ __html: node.content }} />
+        </header>
+
+        <footer>
+          {node.tech && (
+            <ul className="project-tech-list">
+              {node.tech.map((tech: string, i: number) => (
+                <li key={i}>{tech}</li>
+              ))}
             </ul>
-
-            <button className="more-button" onClick={() => setShowMore(!showMore)}>
-                Show {showMore ? 'Less' : 'More'}
-            </button>
-        </StyledProjectsSection>
+          )}
+        </footer>
+      </div>
     );
+  };
+
+  return (
+    <StyledProjectsSection>
+      <h2 ref={revealTitle}>
+        Other Noteworthy Projects
+      </h2>
+
+      <Link href="/archive" >
+        <a className="inline-link archive-link" ref={revealArchiveLink}>
+          view the archive
+        </a>
+      </Link>
+
+      <ul className="projects-grid">
+        {prefersReducedMotion ? (
+          <>
+            {projectsToShow &&
+              projectsToShow.map((node: any, i: number) => (
+                <StyledProject key={i}>{projectInner(node)}</StyledProject>
+              ))}
+          </>
+        ) : (
+          <TransitionGroup component={null}>
+            {projectsToShow &&
+              projectsToShow.map((node: any, i: number) => (
+                <CSSTransition
+                  key={i}
+                  classNames="fadeup"
+                  timeout={i >= GRID_LIMIT ? (i - GRID_LIMIT) * 300 : 300}
+                  exit={false}>
+                  <StyledProject
+                    key={i}
+                    ref={el => (revealProjects.current[i] = el as HTMLLIElement)}
+                    style={{
+                      transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
+                    }}>
+                    {projectInner(node)}
+                  </StyledProject>
+                </CSSTransition>
+              ))}
+          </TransitionGroup>
+        )}
+      </ul>
+
+      {/* <button className="more-button" onClick={() => setShowMore(!showMore)}>
+        Show {showMore ? 'Less' : 'More'}
+      </button> */}
+    </StyledProjectsSection>
+  );
 };
 
 export default ArchiveProjects;
@@ -165,6 +166,7 @@ const StyledProjectsSection = styled.section`
     grid-gap: 15px;
     position: relative;
     margin-top: 50px;
+    width: 100%;
     @media (max-width: 1080px) {
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
@@ -202,6 +204,9 @@ const StyledProject = styled.li`
     border-radius: var(--border-radius);
     background-color: ${({ theme }) => theme.colors.backgroundLight};
     transition: var(--transition);
+    header {
+      width: 100%;
+    }
   }
   .project-top {
     ${mixins.flexBetween};

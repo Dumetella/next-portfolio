@@ -13,20 +13,23 @@ interface FeaturedProps {
 }
 
 const Featured = (props: FeaturedProps) => {
+
   const contentLocale: FeaturedLocalization = JSON.parse(props.FeaturedLocale);
   const featuredProjects = JSON.parse(props.FeaturedProjects);
+
   const revealTitle = useRef<HTMLHeadingElement>(null);
-  const revealProjects = useRef([]);
+  const revealProjects = useRef<HTMLLIElement[]>([]);
   const prefersReducedMotion = usePrefersReducedMotion();
+
   useEffect(() => {
     if (prefersReducedMotion) {
       return;
     }
     async function reveal() {
-      const sr = (await import("scrollreveal")).default;
       if (revealTitle.current) {
-        sr.reveal(revealTitle.current, srConfig());
-        revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
+        const sr = (await import("scrollreveal")).default;
+        sr().reveal(revealTitle.current, srConfig());
+        revealProjects.current.forEach((ref, i) => sr().reveal(ref, srConfig(i * 600)));
       }
     }
     reveal();
@@ -34,14 +37,14 @@ const Featured = (props: FeaturedProps) => {
 
   return (
     <section id="projects">
-      <h2 className="numbered-heading" >
+      <h2 className="numbered-heading" ref={revealTitle}>
         {contentLocale.h2}
       </h2>
       <StyledProjectsGrid>
         {featuredProjects &&
           featuredProjects.map((node: any, i: number) => {
             return (
-              <StyledProject key={i}>
+              <StyledProject key={i} ref={el => (revealProjects.current[i] = el as HTMLLIElement)}>
                 <div className="project-content">
                   <div>
                     <p className="project-overline">{contentLocale.p}</p>
