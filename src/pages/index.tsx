@@ -3,7 +3,7 @@ import Layout from '@components/Layout';
 import Contact from '@components/sections/Contact';
 import Featured from '@components/sections/Featured';
 import Hero from '@components/sections/Hero';
-import { GetServerSideProps, GetServerSidePropsResult } from 'next';
+import { GetServerSideProps, GetServerSidePropsResult, GetStaticProps, GetStaticPropsResult } from 'next';
 import About from '@components/sections/About';
 import { AboutLocalization, ContactLocalization, HeroLocalization, NavigationLocalization } from 'src/model/Localization';
 import { MarkdownReader } from 'src/lib/MarkdownReader';
@@ -37,7 +37,7 @@ const Home = (props: HomeProps): JSX.Element => {
 
 export default Home
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }): Promise<GetServerSidePropsResult<HomeProps>> => {
+export const getStaticProps: GetStaticProps = async ({ locale }): Promise<GetStaticPropsResult<HomeProps>> => {
   const loc = locale === 'ru' ? 'ru' : 'en';
   const md = new MarkdownReader(loc);
   const NavigationLocale = await import(`../../content/${loc}/localization/navlinks.json`);
