@@ -53,14 +53,14 @@ const Navigation = (props: NavigationProps): JSX.Element => {
         <Link href="/" aria-label="home">
           <a>
             {/* <IconLogo /> */}
-            Aboba
+            Logo
           </a>
         </Link>
       ) : (
         <Link href="/" aria-label="home">
           <a>
             {/* <IconLogo /> */}
-            Aboba
+            Logo
           </a>
         </Link>
       )}

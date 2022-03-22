@@ -99,11 +99,11 @@ const ArchiveProjects = (props: ArchiveProjectsProps): JSX.Element => {
         Other Noteworthy Projects
       </h2>
 
-      <Link href="/archive" >
+      {/* <Link href="/archive" >
         <a className="inline-link archive-link" ref={revealArchiveLink}>
           view the archive
         </a>
-      </Link>
+      </Link> */}
 
       <ul className="projects-grid">
         {prefersReducedMotion ? (
