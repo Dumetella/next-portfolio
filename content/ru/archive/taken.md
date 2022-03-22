@@ -1,6 +1,6 @@
 ---
 date: '2020-01-10'
-title: 'Taken Puzzle'
+title: 'Пятнашки'
 github: 'https://github.com/Dumetella/react-games'
 external: ''
 tech:
@@ -8,4 +8,4 @@ tech:
   - styled-components
 ---
 
-A game duh
+Забавные пятнашки получились.

@@ -28,7 +28,7 @@ export default function Hero(props: HeroProps): JSX.Element {
     const three = <h3 className="big-heading">{content.h3}</h3>;
     const four = (
         <>
-            <p>
+            <p style={{ margin: "20px 0 0" }}>
                 {content.p}
             </p>
         </>

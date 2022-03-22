@@ -1,6 +1,6 @@
 ---
 date: '2021-09-25'
-title: 'Weather App'
+title: 'Погода mini'
 github: 'https://github.com/Dumetella/react-weather'
 external: 'https://dumetella-weather.herokuapp.com/'
 tech:
@@ -9,4 +9,4 @@ tech:
   - styled-components
 ---
 
-A single page web app utilizing openweathermap API.
+Минимальное приложение, реализующее OpenWeatherMap API.

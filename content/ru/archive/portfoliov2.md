@@ -1,6 +1,6 @@
 ---
 date: '2020-01-10'
-title: 'Personal Page v2'
+title: 'Портфолио v2'
 github: 'https://github.com/Dumetella/dumetella.github.io'
 external: 'https://dumetella.github.io/'
 tech:
@@ -8,4 +8,4 @@ tech:
   - styled-components
 ---
 
-Second try at personal portfolio.
+Вторая итерация моей личной странички с портфолио.

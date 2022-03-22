@@ -6,6 +6,7 @@ import usePrefersReducedMotion from '@hooks/usePrefersReducedMotion';
 import Link from 'next/link';
 import srConfig from '@utils/sr';
 import mixins from '@styles/mixins';
+import { useRouter } from 'next/router';
 
 interface ArchiveProjectsProps {
   ArchiveProjectsLocale?: string,
@@ -16,7 +17,7 @@ const ArchiveProjects = (props: ArchiveProjectsProps): JSX.Element => {
 
   // const localization = JSON.parse(props.ArchiveProjectsLocale);
   const content = JSON.parse(props.ArchiveProjectsContent);
-
+  const locale = useRouter().locale === 'ru' ? 'ru' : 'en';
   const [showMore, setShowMore] = useState(false);
   const revealTitle = useRef<HTMLHeadingElement>(null);
   const revealArchiveLink = useRef<HTMLAnchorElement>(null);
@@ -96,7 +97,7 @@ const ArchiveProjects = (props: ArchiveProjectsProps): JSX.Element => {
   return (
     <StyledProjectsSection>
       <h2 ref={revealTitle}>
-        Other Noteworthy Projects
+        {locale === 'ru' ? 'Мои предыдущие проекты' : 'Other Noteworthy Projects'}
       </h2>
 
       {/* <Link href="/archive" >
