@@ -8,5 +8,6 @@ tech:
   - React
   - Redux
   - styled-components
+  - Websockets
 ---
 Вебсокет чат наподобие старых RTC веб-приложений.
